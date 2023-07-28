@@ -1,0 +1,65 @@
+.contact {
+    background: url(../assets/terms_bg.jpg) no-repeat center center / cover !important;
+}
+
+.Main {
+    overflow: hidden;
+
+    &__Contact {
+        height: calc(100vh - 12rem);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background: $zane_black;
+        padding: 4rem !important;
+
+        a {
+            text-decoration: none;
+            color: $zane_white;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                color: $zane_blue_light;
+            }
+        }
+
+            &__rrss {
+                margin-top: 4rem;
+
+                .iconic {
+                    margin: 1rem 0;
+                    padding-left: 3rem;
+                }
+            }
+
+            &__back {
+                height: calc(100vh - 12rem);
+                background: url(../assets/contactus_bg.svg) no-repeat center center / contain;
+            }
+        
+    }
+}
+
+@media (max-width: 576px) {
+
+    .Main {
+        &__Contact {
+            height: unset;
+
+        &__back {
+            height: 30rem;
+        }
+
+            h1 {
+                font-size: 5rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            &__rrss {
+                .tel {
+                    margin-bottom: 3rem;
+                }
+            }
+        }
+    }
+}

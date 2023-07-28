@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "80:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: educlick
+      WORDPRESS_DB_USER: hongan
+      WORDPRESS_DB_PASSWORD: ANlol2001@
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+      - ./wordpress:/var/www/html
+
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: educlick
+      MYSQL_DATABASE: educlick
+      MYSQL_USER: hongan
+      MYSQL_PASSWORD: ANlol2001@
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+    restart: always
+  browsersync:
+    image: browser-sync
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    volumes:
+      - ./wordpress:/var/www/html
+    command: "start --proxy 'http://wordpress:80' --files '/var/www/html/wp-content/themes/educlick/stylesheets/*.css'"
+    depends_on:
+      - wordpress
+  
+volumes:
+  db_data:
+  wp_data:
